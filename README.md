@@ -17,6 +17,7 @@ The repositories are 2:
 - **data**: it contains the csv files with the original datasets.
 
 - **script**: it contains the sql files with the instructions performing the task. The files inside are the following ones:
+
 `tables.sql`
 > The SQL code of the initial tables;
 
