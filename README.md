@@ -1,6 +1,6 @@
 # DM_medical_dataset: Open Drug Knowledge Graph
 
-This project was carried out by Group 25 for the course of Data Management for Data Science from the Master's degree in Data science at Sapienza University of Rome.
+This project was carried out by Group 25 for the frist two assignments of the course of Data Management for Data Science from the Master's degree in Data science at Sapienza University of Rome.
 Thr group was composed by:
 | NAME and SURNAME | MATRICOLA | EMAIL |
 | --- | --- | --- |
