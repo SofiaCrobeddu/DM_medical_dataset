@@ -1,4 +1,4 @@
-# DM_medical_dataset: Open Drug Knowledge Graph
+# DM_medical_dataset_SQL: Open Drug Knowledge Graph
 
 This project was carried out by Group 25 for the frist two assignments of the course of Data Management for Data Science from the Master's degree in Data science at Sapienza University of Rome.
 Thr group was composed by:
@@ -10,6 +10,7 @@ Thr group was composed by:
 ## PURPOSE
 
 The aim of this project is to create a database about medical drugs and products, extracting their information through queries. After this first implementation, it was also performed the optimization of tables and queries in order to improve performance and enable efficient data retrieval from the database.
+The queries were tested through the software **pgadmin4** for SQL programming language.
 
 ## REPOSITORIES
 
