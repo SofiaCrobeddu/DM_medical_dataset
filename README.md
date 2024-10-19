@@ -30,19 +30,19 @@ The repositories are 2:
 `optimized_queries.sql`
 > The SQL code of the optimized queries (through indeces for example);
 
-## LOGIC MODEL
+## LOGICAL MODEL
 
 The logical model which establishes the structure of data and their relationships is the following one:
 
 | ENTITY          | ATTRIBUTES                                                                                      | FOREIGN KEY                                      |
 |-----------------|-------------------------------------------------------------------------------------------------|--------------------------------------------------|
 | `Product`       | :key: **id** <br> :small_blue_diamond: source_id <br> :small_blue_diamond: drug_id <br> :small_blue_diamond: name <br> :small_blue_diamond: url <br> :small_blue_diamond: type <br> :small_blue_diamond: n_reviews <br> :small_blue_diamond: manufacturer_id | :link: manufacturer_id (Ref. *`Manufacturer`: id*) |
-| `Drug`          | :key: **id** <br> :small_blue_diamond: name <br> :small_blue_diamond: wiki_url <br> :small_blue_diamond: drugbank_url          | ---                                              |
+| `Drug`          | :key: **id** <br> :small_blue_diamond: name <br> :small_blue_diamond: wiki_url <br> :small_blue_diamond: drugbank_url          |   /                                              |
 | `Price`         | :key: **id** <br> :small_blue_diamond: product_id <br> :small_blue_diamond: store_id <br> :small_blue_diamond: type <br> :small_blue_diamond: price <br> :small_blue_diamond: url | :link: product_id (Ref. *`Product`: id*) <br> :link: store_id (Ref. *`Store`: id*) |
-| `Condition`     | :key: **id** <br> :small_blue_diamond: name <br> :small_blue_diamond: source_id <br> :small_blue_diamond: url                  | ---                                              |
+| `Condition`     | :key: **id** <br> :small_blue_diamond: name <br> :small_blue_diamond: source_id <br> :small_blue_diamond: url                  |   /                                              |
 | `Treatment`     | :key: **id** <br> :small_blue_diamond: source_id <br> :small_blue_diamond: condition_id <br> :small_blue_diamond: drug_id       | :link: condition_id (Ref. *`Condition`: id*) <br> :link: drug_id (Ref. *`Drug`: id*) |
-| `Store`         | :key: **id** <br> :small_blue_diamond: name                                                     | ---                                              |
-| `Manufacturer`  | :key: **id** <br> :small_blue_diamond: name                                                     | ---                                              |
+| `Store`         | :key: **id** <br> :small_blue_diamond: name                                                     |   /                                              |
+| `Manufacturer`  | :key: **id** <br> :small_blue_diamond: name                                                     |   /                                              |
 
 ### Relationships
 
