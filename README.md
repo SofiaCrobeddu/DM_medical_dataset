@@ -9,12 +9,21 @@ Thr group was composed by:
 
 ## PURPOSE
 
-The aim of this project is to create a database about medical drugs and products, extracting their information through queries. After this first implementation, it was also performed the optimization of tables and queries in order to veloize the process of extraction.
+The aim of this project is to create a database about medical drugs and products, extracting their information through queries. After this first implementation, it was also performed the optimization of tables and queries in order to improve performance and enable efficient data retrieval from the database.
 
 ## REPOSITORIES
 
 The repositories are 2:
-- **data**: it contains the csv files with the original datasets.
+- **data**: it contains the csv files with the original datasets. The files inside are the following ones:
+  - `condition.csv`: contains the health conditions. Each condition has an id, a name and an url link. It is also connected to an other csv files through the column source_id.
+  - `drug.csv`: contains the healthcare drug's information. Each drug has an id, a name, a specific url link and a link to the drugbank.
+  - `interaction.csv`: contains the interactions between drugs. Each interaction has an id and it is connected to an others csv files through the columns source_drug_id and target_drug_id.
+  - `manufacturer.csv`: contains the manufacturer information. Each manufacturer has an id and a name.
+  - `price.csv`: contains the medical product's price. Each price has an id, the value indicated by the column "price", a specific type and an url link. It is also connected to the others csv files through the columns product_id and store_id.
+  - `product.csv`: contains the medical product's information. Each product has an id, a name, a type, an url link, the number of reviews. It is also connected to the others csv files through the columns source_id, drug_id and manufacturer_id.
+  - `source.csv`: contains the source of information. Each source has an id a name (such as Wikidata, Drugbank, etc...) and the correspondent url. This dataset was not actually used and it is just put here for completeness.
+  - `store.csv`: contains the store information. Each store has an id and a name.
+  - `treatement.csv`: contains the treatements' information. Each treatment has an id, and it is connected to the others csv files through the columns source_id, drug_id and condition_id.
 
 - **script**: it contains the sql files with the instructions performing the task. The files inside are the following ones:
 
@@ -49,36 +58,3 @@ The logical model which establishes the structure of data and their relationship
 - **Product** references **Manufacturer** via `manufacturer_id`
 - **Price** references **Product** via `product_id` and **Store** via `store_id`
 - **Treatment** references **Condition** via `condition_id` and **Drug** via `drug_id`.
-
-
-## DATA
-
-Database is builded from the following tables:
-
-1. Brands
-> The brands table stores the brand’s information of bikes, for example, Electra, Haro, and Heller.
-
-2. Categories
-> The categories table stores the bike’s categories such as children bicycles, comfort bicycles, and electric bikes.
-
-3. Customers
-> The customers table stores customer’s information including first name, last name, phone, email, street, city, state and zip code.
-
-4. Order_items
-> The order_items table stores the line items of a sales order. Each line item belongs to a sales order specified by the order_id column. A sales order line item includes product, order quantity, list price, and discount. Order_status= 1: Pending, 2: Processing, 3: Rejected, 4: Completed
-
-5. Orders
-> The orders table stores the sales order’s header information including customer, order status, order date, required date, shipped date. It also stores the information on where the sales transaction was created (store) and who created it (staff). Each sales order has a row in the sales_orders table. A sales order has one or many line items stored in the order_items table.
-
-6. Products
-> The products table stores the product’s information such as name, brand, category, model year, and list price. Each product belongs to a brand specified by the brand_id column. Hence, a brand may have zero or many products. Each product also belongs a category specified by the category_id column. Also, each category may have zero or many products.
-
-7. Staffs
-> The staffs table stores the essential information of staffs including first name, last name. It also contains the communication information such as email and phone. A staff works at a store specified by the value in the store_id column. A store can have one or more staffs. A staff reports to a store manager specified by the value in the manager_id column. If the value in the manager_id is null, then the staff is the top manager. If a staff no longer works for any stores, the value in the active column is set to zero.
-
-8. Stocks
-> The stocks table stores the inventory information i.e. the quantity of a particular product in a specific store.
-
-9. Stores
-> The stores table includes the store’s information. Each store has a store name, contact information such as phone and email, and an address including street, city, state, and zip code.
-
