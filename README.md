@@ -1,15 +1,11 @@
 # DM_medical_dataset: Open Drug Knowledge Graph
 
-
-
-## PRESENTATION
-
-The purpose of this project was to develop a database that would track sales and production of bike stores in America. This project was carried out by Group 42 of Data Management for Data Science, consisting of:
-
+This project was carried out by Group 25 for the course of Data Management for Data Science from the Master's degree in Data science at Sapienza University of Rome.
+Thr group was composed by:
 | NAME and SURNAME | MATRICOLA | EMAIL |
 | --- | --- | --- |
-| Pasquale Luca Tommasino | 1912107 | tommasino.1912107@studenti.uniroma1.it | 
-| Francesco Proietti | 1873188 | proietti.1873188@studenti.uniroma1.it |
+| Sofia Noemi Crobeddu | 2130389 | crobeddu.2130389@studenti.uniroma1.it | 
+| Stefano Rinaldi | 1945551 | rinaldi.1945551@studenti.uniroma1.it |
 
 ## SCRIPT
 
