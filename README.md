@@ -7,48 +7,47 @@ Thr group was composed by:
 | Sofia Noemi Crobeddu | 2130389 | crobeddu.2130389@studenti.uniroma1.it | 
 | Stefano Rinaldi | 1945551 | rinaldi.1945551@studenti.uniroma1.it |
 
-## SCRIPT
+## PURPOSE
 
-For the planned delivery, the project required only the following 4 files:
+The aim of this project is to create a database about medical drugs and products, extracting their information through queries. After this first implementation, it was also performed the optimization of tables and queries in order to veloize the process of extraction.
 
-`1_Initial_Database.sql`
-> Create the first version of database (limite ourselves to very simple tables to create a comparison with the queries we will see later).
+## REPOSITORIES
 
-`2_Queries.sql`
-> The SQL code of the first 6 queries (with explanation);
+The repositories are 2:
+- **data**: it contains the csv files with the original datasets.
 
-`3_Modified_Queris.sql`
-> The SQL code of the last 4 queries (with explanation), doing a cost analysis, and creating for each, its own best version;
+- **script**: it contains the sql files with the instructions performing the task. The files inside are the following ones:
+`tables.sql`
+> The SQL code of the initial tables;
 
-`4_Final_Database.sql`
-> The SQL code that we have used to create the schema of our final database (create tables, primary keys and costraint foreign key)
+`queries.sql`
+> The SQL code of the initial queries;
 
+`optimized_tables.sql`
+> The SQL code of the optimized tables (with primary keys and other modifications);
 
-But for proper replication of what we have done, we recommend that first running the `0_FileStart.sql` file first, and only after running the above mentioned files (in order), load the last file, `5_Load_Data.sql`. Very simply, the files have a starting number in the name, do the run of the files in ascending order.
-
-
-## EER DIAGRAM
-
-EER diagrams provide a visual representation of the relationships among the tables (entity) in the model. The image below represent our database.
-
-<img width="965" alt="EER-Diagram" src="https://github.com/pltommasino/BikeStoreDB/assets/123829470/3dd91575-e802-4b88-a5e6-69b43266d9fe">
-
+`optimized_queries.sql`
+> The SQL code of the optimized queries (through indeces for example);
 
 ## LOGIC MODEL
 
-A logical model establishes the structure of data elements and the relationships among them.
+The logical model which establishes the structure of data and their relationships is the following one:
 
-| ENTITY | ATTRIBUTES | FOREIGN KEY |
-| --- | --- | --- |
-| `Brands` | :key: ***Brand ID*** <br> :small_blue_diamond: Brand Name | --- |
-| `Categories` | :key: ***Category ID*** <br> :small_blue_diamond: Category Name | --- |
-| `Customers` | :key: ***Customer ID*** <br> :small_blue_diamond: First Name <br> :small_blue_diamond: Last Name <br> :small_blue_diamond: Phone Number <br> :small_blue_diamond: E-mail <br> :small_blue_diamond: Street <br> :small_blue_diamond: City <br> :small_blue_diamond: State <br> :small_blue_diamond: Zip Code | --- |
-| `Order_items` | :key: (***Order ID***, ***Item ID***) <br> :small_blue_diamond: Product ID <br> :small_blue_diamond: Quantity <br> :small_blue_diamond: List Price <br> :small_blue_diamond: Discount | :link: Order ID (Ref. *`Orders`: Order ID*) <br> :link: Product ID (Ref. *`Products`: Product ID*) |
-| `Orders` | :key: ***Order ID*** <br> :small_blue_diamond: Customer ID <br> :small_blue_diamond: Order Status <br> :small_blue_diamond: Order Date <br> :small_blue_diamond: Required Date <br> :small_blue_diamond: Shipped Date <br> :small_blue_diamond: Store ID <br> :small_blue_diamond: Staff ID | :link: Customer ID (Ref. *`Customers`: Customer ID*) <br> :link: Staff ID (Ref. *`Staffs`: Staff ID*) <br> :link: Store ID (Ref. *`Stores`: Store ID*) |
-| `Products` | :key: ***Product ID*** <br> :small_blue_diamond: Product Name <br> :small_blue_diamond: Brand ID <br> :small_blue_diamond: Category ID <br> :small_blue_diamond: Model Year <br> :small_blue_diamond: List Price | :link: Brand ID (Ref. *`Brands`: Brand ID*) <br> :link: Category ID (Ref. *`Categories`: Category ID*) |
-| `Staffs` | :key: ***Staff ID*** <br> :small_blue_diamond: First Name <br> :small_blue_diamond: Last Name <br> :small_blue_diamond: E-mail <br> :small_blue_diamond: Phone Number <br> :small_blue_diamond: Active <br> :small_blue_diamond: Store ID <br> :small_blue_diamond: Manager ID | :link: Store ID (Ref. *`Stores`: Store ID*) |
-| `Stocks` | :key: (***Store_ID***, ***Product ID***) <br> :small_blue_diamond: Quantity | :link: Store ID (Ref. *`Stores`: Store ID*) <br> :link: Product ID (Ref. *`Products`: Product ID*) |
-| `Stores` | :key: ***Store ID*** <br> :small_blue_diamond: Store Name <br> :small_blue_diamond: Phone Number <br> :small_blue_diamond: E-mail <br> :small_blue_diamond: Street <br> :small_blue_diamond: City <br> :small_blue_diamond: State <br> :small_blue_diamond: Zip Code | --- |
+| ENTITY          | ATTRIBUTES                                                                                      | FOREIGN KEY                                      |
+|-----------------|-------------------------------------------------------------------------------------------------|--------------------------------------------------|
+| `Product`       | :key: **id** <br> :small_blue_diamond: source_id <br> :small_blue_diamond: drug_id <br> :small_blue_diamond: name <br> :small_blue_diamond: url <br> :small_blue_diamond: type <br> :small_blue_diamond: n_reviews <br> :small_blue_diamond: manufacturer_id | :link: manufacturer_id (Ref. *`Manufacturer`: id*) |
+| `Drug`          | :key: **id** <br> :small_blue_diamond: name <br> :small_blue_diamond: wiki_url <br> :small_blue_diamond: drugbank_url          | ---                                              |
+| `Price`         | :key: **id** <br> :small_blue_diamond: product_id <br> :small_blue_diamond: store_id <br> :small_blue_diamond: type <br> :small_blue_diamond: price <br> :small_blue_diamond: url | :link: product_id (Ref. *`Product`: id*) <br> :link: store_id (Ref. *`Store`: id*) |
+| `Condition`     | :key: **id** <br> :small_blue_diamond: name <br> :small_blue_diamond: source_id <br> :small_blue_diamond: url                  | ---                                              |
+| `Treatment`     | :key: **id** <br> :small_blue_diamond: source_id <br> :small_blue_diamond: condition_id <br> :small_blue_diamond: drug_id       | :link: condition_id (Ref. *`Condition`: id*) <br> :link: drug_id (Ref. *`Drug`: id*) |
+| `Store`         | :key: **id** <br> :small_blue_diamond: name                                                     | ---                                              |
+| `Manufacturer`  | :key: **id** <br> :small_blue_diamond: name                                                     | ---                                              |
+
+### Relationships
+
+- **Product** references **Manufacturer** via `manufacturer_id`
+- **Price** references **Product** via `product_id` and **Store** via `store_id`
+- **Treatment** references **Condition** via `condition_id` and **Drug** via `drug_id`.
 
 
 ## DATA
