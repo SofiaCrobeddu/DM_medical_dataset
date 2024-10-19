@@ -13,7 +13,7 @@ The aim of this project is to create a database about medical drugs and products
 
 ## REPOSITORIES
 
-The repositories are 2:
+The repositories are two:
 - **data**: it contains the csv files with the original datasets. The files inside are the following ones:
   - `condition.csv`: contains the health conditions. Each condition has an id, a name and an url link. It is also connected to an other csv files through the column source_id.
   - `drug.csv`: contains the healthcare drug's information. Each drug has an id, a name, a specific url link and a link to the drugbank.
